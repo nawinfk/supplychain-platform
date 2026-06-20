@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: news-producer
+  namespace: supplychain
+  labels:
+    app: news-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: news-producer
+  template:
+    metadata:
+      labels:
+        app: news-producer
+    spec:
+      serviceAccountName: supplychain-platform
+      terminationGracePeriodSeconds: 30
+      securityContext:
+        runAsNonRoot: true
+      containers:
+        - name: news-producer
+          image: ghcr.io/nawinfk/supplychain-platform/news-producer:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: supplychain-config
+            - secretRef:
+                name: supplychain-secrets
+          readinessProbe:
+            exec:
+              command: ["python", "-c", "import os; os.kill(1, 0)"]
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          livenessProbe:
+            exec:
+              command: ["python", "-c", "import os; os.kill(1, 0)"]
+            initialDelaySeconds: 15
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 50m
+              memory: 96Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]

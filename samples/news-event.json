@@ -1,0 +1,11 @@
+{
+  "external_id": "sample-news-001",
+  "title": "Port congestion causes shipping delay",
+  "url": "https://example.com/supply-chain/sample-news-001",
+  "domain": "example.com",
+  "keywords": ["congestion", "delay"],
+  "event_time": "2026-06-20T08:00:00Z",
+  "source": "gdeltproject.org",
+  "raw_payload": {"language": "English"}
+}
+

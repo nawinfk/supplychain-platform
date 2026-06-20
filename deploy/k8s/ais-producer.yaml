@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ais-producer
+  namespace: supplychain
+  labels:
+    app: ais-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ais-producer
+  template:
+    metadata:
+      labels:
+        app: ais-producer
+    spec:
+      serviceAccountName: supplychain-platform
+      terminationGracePeriodSeconds: 30
+      securityContext:
+        runAsNonRoot: true
+      containers:
+        - name: ais-producer
+          image: ghcr.io/nawinfk/supplychain-platform/ais-producer:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: supplychain-config
+            - secretRef:
+                name: supplychain-secrets
+          readinessProbe:
+            exec:
+              command: ["python", "-c", "import os; os.kill(1, 0)"]
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          livenessProbe:
+            exec:
+              command: ["python", "-c", "import os; os.kill(1, 0)"]
+            initialDelaySeconds: 15
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 300m
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]

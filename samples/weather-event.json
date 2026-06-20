@@ -1,0 +1,13 @@
+{
+  "port_code": "USLAX",
+  "port_name": "Los Angeles",
+  "lat": 33.7405,
+  "lon": -118.2728,
+  "temperature_c": 21.4,
+  "wind_speed_kph": 55.2,
+  "weather_code": 3,
+  "event_time": "2026-06-20T08:00:00Z",
+  "source": "open-meteo.com",
+  "raw_payload": {"current_units": {"wind_speed_10m": "km/h"}}
+}
+

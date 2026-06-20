@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: supplychain-config
+  namespace: supplychain
+data:
+  ENV: production
+  KAFKA_SECURITY_PROTOCOL: SASL_SSL
+  KAFKA_SASL_MECHANISM: PLAIN
+  KAFKA_CLIENT_ID: supplychain-platform
+  KAFKA_AUTO_OFFSET_RESET: earliest
+  AIS_MOCK_INTERVAL_SECONDS: "5"
+  AIS_MOCK_MODE: "false"
+  WEATHER_POLL_INTERVAL_SECONDS: "300"
+  NEWS_POLL_INTERVAL_SECONDS: "300"
+  RISK_WIND_THRESHOLD_KPH: "50"
+  RISK_LOW_SPEED_THRESHOLD_KNOTS: "1.5"
+  RISK_PORT_RADIUS_KM: "25"
+  LOG_LEVEL: INFO
+  OTEL_SERVICE_NAME: supplychain-platform

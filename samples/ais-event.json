@@ -1,0 +1,12 @@
+{
+  "mmsi": 367175150,
+  "vessel_name": "PACIFIC TRADER",
+  "lat": 33.741,
+  "lon": -118.273,
+  "speed_over_ground": 8.4,
+  "course_over_ground": 271.2,
+  "event_time": "2026-06-20T08:00:00Z",
+  "source": "aisstream.io",
+  "raw_payload": {"MessageType": "PositionReport"}
+}
+

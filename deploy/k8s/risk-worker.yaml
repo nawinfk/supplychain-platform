@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: risk-worker
+  namespace: supplychain
+  labels:
+    app: risk-worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: risk-worker
+  template:
+    metadata:
+      labels:
+        app: risk-worker
+    spec:
+      serviceAccountName: supplychain-platform
+      terminationGracePeriodSeconds: 30
+      securityContext:
+        runAsNonRoot: true
+      containers:
+        - name: risk-worker
+          image: ghcr.io/nawinfk/supplychain-platform/risk-worker:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: supplychain-config
+            - secretRef:
+                name: supplychain-secrets
+          readinessProbe:
+            exec:
+              command: ["python", "-c", "import os; os.kill(1, 0)"]
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          livenessProbe:
+            exec:
+              command: ["python", "-c", "import os; os.kill(1, 0)"]
+            initialDelaySeconds: 15
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]

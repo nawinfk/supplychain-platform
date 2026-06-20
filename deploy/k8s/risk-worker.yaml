@@ -21,7 +21,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: risk-worker
-          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/risk-worker:v2
+          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/risk-worker:v3
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:

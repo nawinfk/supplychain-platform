@@ -20,7 +20,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: api-service
-          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/api-service:v2
+          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/api-service:v3
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

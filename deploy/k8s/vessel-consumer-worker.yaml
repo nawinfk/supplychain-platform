@@ -21,7 +21,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: vessel-consumer-worker
-          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/vessel-consumer-worker:v2
+          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/vessel-consumer-worker:v3
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:

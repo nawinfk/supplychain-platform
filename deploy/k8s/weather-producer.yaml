@@ -21,7 +21,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: weather-producer
-          image: ghcr.io/nawinfk/supplychain-platform/weather-producer:latest
+          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/weather-producer:v1
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:

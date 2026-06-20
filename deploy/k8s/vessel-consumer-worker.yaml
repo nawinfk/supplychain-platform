@@ -6,7 +6,7 @@ metadata:
   labels:
     app: vessel-consumer-worker
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: vessel-consumer-worker
@@ -21,7 +21,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: vessel-consumer-worker
-          image: ghcr.io/nawinfk/supplychain-platform/vessel-consumer-worker:latest
+          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/vessel-consumer-worker:v1
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:

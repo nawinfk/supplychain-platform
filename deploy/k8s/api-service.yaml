@@ -6,7 +6,7 @@ metadata:
   labels:
     app: api-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: api-service
@@ -20,7 +20,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: api-service
-          image: ghcr.io/nawinfk/supplychain-platform/api-service:latest
+          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/api-service:v1
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

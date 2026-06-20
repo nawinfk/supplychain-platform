@@ -6,7 +6,7 @@ metadata:
   labels:
     app: risk-worker
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: risk-worker
@@ -21,7 +21,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: risk-worker
-          image: ghcr.io/nawinfk/supplychain-platform/risk-worker:latest
+          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/risk-worker:v1
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:

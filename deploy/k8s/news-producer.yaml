@@ -21,7 +21,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: news-producer
-          image: ghcr.io/nawinfk/supplychain-platform/news-producer:latest
+          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/news-producer:v1
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:

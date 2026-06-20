@@ -20,7 +20,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: api-service
-          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/api-service:v1
+          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/api-service:v2
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -50,7 +50,11 @@ spec:
               cpu: 500m
               memory: 512Mi
           securityContext:
+            runAsNonRoot: true
+            runAsUser: 10001
+            runAsGroup: 10001
             allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
             capabilities:
               drop: ["ALL"]
 ---
@@ -67,4 +71,3 @@ spec:
       port: 80
       targetPort: http
   type: ClusterIP
-

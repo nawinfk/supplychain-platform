@@ -9,6 +9,8 @@ WORKDIR /app
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends gcc \
+    && groupadd --gid 10001 app \
+    && useradd --uid 10001 --gid 10001 --no-create-home --shell /usr/sbin/nologin app \
     && rm -rf /var/lib/apt/lists/*
 
 COPY pyproject.toml ./
@@ -17,6 +19,9 @@ COPY services/weather-producer ./services/weather-producer
 COPY samples ./samples
 
 RUN pip install --upgrade pip \
-    && pip install .
+    && pip install . \
+    && chown -R 10001:10001 /app
+
+USER 10001:10001
 
 CMD ["python", "services/weather-producer/main.py"]

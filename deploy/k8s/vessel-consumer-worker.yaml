@@ -21,7 +21,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: vessel-consumer-worker
-          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/vessel-consumer-worker:v1
+          image: 402275401431.dkr.ecr.us-east-1.amazonaws.com/supplychain-platform/vessel-consumer-worker:v2
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
@@ -46,6 +46,10 @@ spec:
               cpu: 500m
               memory: 512Mi
           securityContext:
+            runAsNonRoot: true
+            runAsUser: 10001
+            runAsGroup: 10001
             allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
             capabilities:
               drop: ["ALL"]
